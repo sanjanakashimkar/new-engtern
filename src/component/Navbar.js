@@ -60,15 +60,15 @@ const Navbar = () => {
       {/* Desktop Navigation */}
       <div className="hidden lg:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[100px]">
         <div className="flex justify-between items-center h-full">
-        <div className="flex-shrink-0">
-  <a href="/">
-  <img
-  src={logo}
-  alt="ENGTERN"
-  className="mt-[-45px] w-[350px] h-auto sm:w-[700px] md:w-[400px]"
-/>
-  </a>
-</div>
+          <div className="flex-shrink-0">
+            <a href="/">
+              <img
+                src={logo}
+                alt="ENGTERN"
+                className="mt-[-45px] w-[350px] h-auto sm:w-[700px] md:w-[400px]"
+              />
+            </a>
+          </div>
           <div className="flex space-x-8">
             {menuItems.map((item) => (
               <div key={item.name} className="relative group">
@@ -129,12 +129,12 @@ const Navbar = () => {
       {/* Mobile Navigation */}
       <div className="lg:hidden">
         <div className="flex justify-between items-center px-4 py-3 border-b border-gray-200">
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 h-[80px]">
             <a href="/">
               <img
                 src={logo}
                 alt="ENGTERN"
-                className="h-12 w-auto"
+                className="h-[270px] w-[230px] mt-[-110px]" // Increased height from h-12 to h-16
               />
             </a>
           </div>
@@ -150,13 +150,12 @@ const Navbar = () => {
         {isMenuOpen && (
           <div className="fixed inset-0 bg-white z-50">
             <div className="flex justify-between items-center px-4 py-3 border-b border-gray-200">
-              <div className="flex items-center">
+              <div className="flex items-center h-[80px]">
                 <img
                   src={logo}
                   alt="ENGTERN"
-                  className="h-8 w-auto mr-2"
+                  className="h-[270px] w-[230px] mt-[-40px]" // Increased height from h-8 to h-12
                 />
-                <p className="text-sm text-gray-500">engtern.com</p>
               </div>
               <button
                 onClick={toggleMenu}
@@ -212,3 +211,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

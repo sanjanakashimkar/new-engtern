@@ -9,7 +9,7 @@ import img2 from '../asset/img/slider2.jpg';
 import img3 from '../asset/img/slider3.jpg';
 import img4 from '../asset/img/slider4.jpg';
 import img5 from '../asset/img/slider5.jpg';
-
+import logoss from "../asset/img/Engtern_logo.png";
 
 const HomePage = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -60,24 +60,18 @@ const HomePage = () => {
         </svg>
         <h3 className="text-yellow-400 text-xl font-semibold mb-4">{level}</h3>
         <p className="text-gray-600 mb-6 leading-relaxed">{description}</p>
-        <button 
+        {/* <button 
           onClick={() => setShowModal(true)}
           className="bg-teal-500 text-white px-8 py-2 rounded-md hover:bg-teal-600 transition-colors"
         >
           Demo
-        </button>
+        </button> */}
       </div>
     );
   };
 
   const ImageCarousel = () => {
-    const images = [
-      img1,
-      img2,
-      img3,
-      img4,
-      img5
-    ];
+    const images = [img1, img2, img3, img4, img5];
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
@@ -148,13 +142,13 @@ const HomePage = () => {
                   className="image-card" 
                   key={index}
                 >
-                <div className="relative w-full h-64 bg-gray-100 overflow-hidden">
-  <img 
-    src={image} 
-    alt={`Gallery image ${index + 1}`} 
-    className="object-contain w-full h-full"
-  />
-</div>
+                  <div className="relative w-full h-64 bg-gray-100 overflow-hidden">
+                    <img 
+                      src={image} 
+                      alt={`Gallery image ${index + 1}`} 
+                      className="object-contain w-full h-full"
+                    />
+                  </div>
                 </div>
               ))}
             </div>
@@ -165,6 +159,161 @@ const HomePage = () => {
               <button
                 key={idx}
                 className={`dot ${currentIndex === idx ? 'active' : ''}`}
+                onClick={() => setCurrentIndex(idx)}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const Testimonials = () => {
+    const testimonials = [
+      {
+        name: "Manoj Mishra",
+        role: "Software testing Engineer",
+        text: "Teaching style is excellent! It took just 2 months of working with Diya Ma'am to see noticeable improvement, and my confidence level has definitely boosted. Amazing, Thank you for your guidance!",
+        image: logoss
+      },
+      {
+        name: "Muneet Singh",
+        role: "Agency Owner",
+        text: "I love her way of teaching. ... She is humble, polite and co operative",
+        image: logoss
+      },
+      {
+        name: "Sanjit",
+        role: "Manager",
+        text: "To be honest, the way you explained the topics was very clear. It really helped me understand and learn communication techniques and skills",
+        image: logoss
+      },
+      {
+        name: "Vinay",
+        role: "DGM Finance", 
+        text: "I wanted to take a moment to express my appreciation for the exceptional teaching I received from you. Your ability to break down complex concepts into understandable",
+        image: logoss
+      },
+      {
+        name: "Suraj sharma",
+        role: "Manager Procurement",
+        text: "It was great experience, lots of things learned and build my confidence.",
+        image: logoss
+      },
+      {
+        name: "Pranav Kumar",
+        role: "Investment banker",
+        text: "Diya mam is an exceptional teacher whose dedication and passion for teaching are evident in every class. Her clear explanations and engaging teaching style make learning enjoyable and effective. I highly recommend her for learning english communication skills and Personal development skills.",
+        image: logoss
+      },
+      {
+        name: "Priti shekhawat",
+        role: "Student",
+        text: "My experience of learning English from her is so so good.",
+        image: logoss
+      }
+    ];
+  
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+    const [isHovered, setIsHovered] = useState(false);
+  
+    useEffect(() => {
+      const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+      };
+  
+      if (typeof window !== 'undefined') {
+        setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+      }
+  
+      return () => {
+        if (typeof window !== 'undefined') {
+          window.removeEventListener('resize', handleResize);
+        }
+      };
+    }, []);
+  
+    useEffect(() => {
+      if (!isHovered) {
+        const timer = setInterval(() => {
+          setCurrentIndex((prevIndex) => {
+            const maxIndex = testimonials.length - getItemsToShow();
+            return prevIndex >= maxIndex ? 0 : prevIndex + 1;
+          });
+        }, 3000);
+  
+        return () => clearInterval(timer);
+      }
+    }, [isHovered]);
+  
+    const getItemsToShow = () => {
+      if (windowWidth >= 1024) return 3;
+      if (windowWidth >= 768) return 2;
+      return 1;
+    };
+  
+    const handlePrevious = () => {
+      setCurrentIndex((prevIndex) => {
+        const maxIndex = testimonials.length - getItemsToShow();
+        return prevIndex === 0 ? maxIndex : prevIndex - 1;
+      });
+    };
+  
+    const handleNext = () => {
+      setCurrentIndex((prevIndex) => {
+        const maxIndex = testimonials.length - getItemsToShow();
+        return prevIndex >= maxIndex ? 0 : prevIndex + 1;
+      });
+    };
+  
+    return (
+      <div className="testimonials-section bg-gray-100 py-16">
+        <div className="testimonials-container max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8">What Our Students Say</h2>
+          <div 
+            className="carousel-container relative"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <button className="carousel-button prev absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md" onClick={handlePrevious}>❮</button>
+            <div 
+              className="testimonials-wrapper flex transition-transform duration-500 ease-in-out"
+              style={{
+                transform: `translateX(-${currentIndex * (100 / getItemsToShow())}%)`
+              }}
+            >
+              {testimonials.map((testimonial, index) => (
+                <div 
+                  className="testimonial-card bg-white rounded-lg shadow-md p-6 mx-2 flex-shrink-0"
+                  style={{ width: `calc(${100 / getItemsToShow()}% - 1rem)` }}
+                  key={index}
+                >
+                  <div className="testimonial-header flex justify-center items-center mb-4">
+                    <div className="testimonial-image w-24 h-24 bg-gray-200 rounded-full overflow-hidden">
+                      <img 
+                        src={testimonial.image} 
+                        alt={testimonial.name} 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                  <div className="testimonial-content text-center">
+                    <h3 className="text-xl font-semibold mb-2">{testimonial.name}</h3>
+                    <p className="text-gray-600 mb-4">{testimonial.text}</p>
+                    <p className="text-sm text-gray-500">{testimonial.role}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <button className="carousel-button next absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md" onClick={handleNext}>❯</button>
+          </div>
+          <div className="carousel-dots flex justify-center mt-8">
+            {Array.from({ length: testimonials.length - getItemsToShow() + 1 }).map((_, idx) => (
+              <button
+                key={idx}
+                className={`dot w-3 h-3 rounded-full mx-1 ${currentIndex === idx ? 'bg-gray-800' : 'bg-gray-300'}`}
                 onClick={() => setCurrentIndex(idx)}
               />
             ))}
@@ -315,20 +464,20 @@ const HomePage = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Why learn with our Courses?
             </h2>
-            <p className="max-w-3xl mx-auto text-gray-600 text-lg">
+            <p className="max-w-3xl mx-auto text-gray-600 text-lg ">
               Interactive & Engaging Lessons: Our courses are designed to keep
               you motivated and actively involved with dynamic exercises,
               quizzes, and real-world conversations.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 rounded-3x">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 rounded-3x ">
             {courses.map((course, index) => (
               <CourseCard
                 key={index}
                 level={course.level}
                 description={course.description}
-                className="bg-green-500 rounded-3xl"
+                className="bg-green-500 rounded-3xl "
               />
             ))}
           </div>
@@ -336,6 +485,8 @@ const HomePage = () => {
       </div>
 
       <ImageCarousel />
+
+      <Testimonials />
 
       {/* WhatsApp Chat Box */}
       <div className="fixed bottom-4 right-4 z-50">
@@ -817,6 +968,48 @@ const HomePage = () => {
 
           .btn:last-child {
             margin-bottom: 0;
+          }
+        }
+
+        /* Testimonials Section Styles */
+        .testimonials-section {
+          background-color: #f9fafb;
+          padding: 4rem 1rem;
+        }
+
+        .testimonials-container {
+          max-width: 1280px;
+          margin: 0 auto;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .testimonials-wrapper {
+          display: flex;
+          gap: 1rem;
+          transition: transform 0.5s ease;
+          width: 100%;
+        
+        }
+
+        .testimonial-card {
+          background: #ffffff;
+          border-radius: 0.5rem;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          padding: 2rem;
+          flex: 0 0 calc(33.333% - 1rem);
+          margin-right: 1rem;
+        }
+
+        @media (max-width: 1024px) {
+          .testimonial-card {
+            flex: 0 0 calc(50% - 1rem);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .testimonial-card {
+            flex: 0 0 100%;
           }
         }
       `}</style>

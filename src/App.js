@@ -5,7 +5,6 @@ import Navbar from './component/Navbar';
 import Footer from './component/Footer';
 import Home from './component/Home';
 import About from './component/About';
-import Contact from './component/Contact';
 import Curriculum from './component/Curriculum';
 import Kids from './component/Kids';
 import Adult from './component/Adult';
@@ -14,6 +13,7 @@ import Student from './component/Student';
 import Teacher from './component/Teacher';
 import Intern from './component/Intern';
 import Gallery from './component/Gallery';
+import Contact from './component/Contact';
 
 
 

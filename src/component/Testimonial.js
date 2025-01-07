@@ -121,6 +121,7 @@ const Testimonials = () => {
             font-weight: 800;
             color: white;
             margin-bottom: 1rem;
+            animation: fadeInDown 1s ease-out;
           }
 
           .hero-content p {
@@ -128,6 +129,7 @@ const Testimonials = () => {
             color: white;
             max-width: 36rem;
             margin: 1rem auto;
+            animation: fadeInUp 1s ease-out 0.5s both;
           }
 
           .testimonials-section {
@@ -162,6 +164,13 @@ const Testimonials = () => {
             padding: 2rem;
             flex: 0 0 calc(33.333% - 1rem);
             margin-right: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 0.5s ease-out;
+          }
+
+          .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
           }
 
           .testimonial-header {
@@ -174,6 +183,7 @@ const Testimonials = () => {
             width: 4rem;
             height: 4rem;
             margin-right: 1rem;
+            animation: rotateIn 1s ease-out;
           }
 
           .testimonial-image img {
@@ -187,6 +197,7 @@ const Testimonials = () => {
             width: 2rem;
             height: 2rem;
             fill: #9ca3af;
+            animation: scaleIn 0.5s ease-out;
           }
 
           .testimonial-content {
@@ -198,18 +209,21 @@ const Testimonials = () => {
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: #1a1a1a;
+            animation: fadeInRight 0.5s ease-out;
           }
 
           .testimonial-text {
             color: #4b5563;
             margin-bottom: 1rem;
             line-height: 1.5;
+            animation: fadeInLeft 0.5s ease-out 0.2s both;
           }
 
           .testimonial-role {
             font-size: 0.875rem;
             color: #6b7280;
             font-weight: 500;
+            animation: fadeInUp 0.5s ease-out 0.4s both;
           }
 
           .carousel-button {
@@ -227,11 +241,12 @@ const Testimonials = () => {
             cursor: pointer;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             z-index: 1;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
           }
 
           .carousel-button:hover {
             background-color: #f3f4f6;
+            transform: translateY(-50%) scale(1.1);
           }
 
           .carousel-button.prev {
@@ -257,11 +272,57 @@ const Testimonials = () => {
             border: none;
             padding: 0;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+          }
+
+          .dot:hover {
+            transform: scale(1.2);
           }
 
           .dot.active {
             background: #1a1a1a;
+            animation: pulse 2s infinite;
+          }
+
+          @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+          }
+
+          @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+
+          @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+
+          @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+          }
+
+          @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+          }
+
+          @keyframes rotateIn {
+            from { transform: rotate(-90deg); opacity: 0; }
+            to { transform: rotate(0); opacity: 1; }
+          }
+
+          @keyframes scaleIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+          }
+
+          @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
           }
 
           @media (max-width: 1024px) {
@@ -288,7 +349,7 @@ const Testimonials = () => {
 
       <div className="hero-section">
         <div className="hero-content">
-          <h1 >Testimonials</h1>
+          <h1>Testimonials</h1>
           <p className="mt-2 text-sm">
           <span>
             <a href="/" className="hover:underline">
@@ -306,9 +367,9 @@ const Testimonials = () => {
       </div>
 
       <div className="testimonials-section">
-        <div className="testimonials-container ">
+        <div className="testimonials-container">
           <div 
-            className="carousel-container "
+            className="carousel-container"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
@@ -324,30 +385,15 @@ const Testimonials = () => {
                   className="testimonial-card" 
                   key={index}
                 >
-                  {/* <div className="testimonial-header w-full flex ">
-                    <div className="testimonial-image">
-                      <img src={testimonial.image} alt={testimonial.name}
-                      className='bg-red-600 '
+                  <div className="testimonial-header w-full flex justify-center items-center">
+                    <div className="testimonial-image flex justify-center items-center bg-gray-100 rounded-full" style={{ width: "150px", height: "150px" }}>
+                      <img 
+                        src={testimonial.image} 
+                        alt={testimonial.name} 
+                        className="w-full h-full object-cover rounded-full"
                       />
                     </div>
-                    <svg 
-                      className="quote-icon"
-                      viewBox="0 0 190.5 148" 
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M37.7,146.3L2.1,124.6C19.3,100,28.2,74.1,28.8,46.7V2.3H90v38.8c0,19.3-5,38.8-15.1,58.4C64.9,119,52.5,134.6,37.7,146.3z M133.7,146.3l-35.6-21.7c17.2-24.5,26.2-50.5,26.8-77.9V2.3h61.2v38.8c0,19.3-5,38.8-15.1,58.4C160.9,119,148.5,134.6,133.7,146.3z"/>
-                    </svg>
-                  </div> */}
-
-<div className="testimonial-header w-full flex justify-center items-center">
-  <div className="testimonial-image flex justify-center items-center bg-gray-100 rounded-full" style={{ width: "150px", height: "150px" }}>
-    <img 
-      src={testimonial.image} 
-      alt={testimonial.name} 
-      className="w-full h-full object-cover rounded-full"
-    />
-  </div>
-</div>
+                  </div>
                   <div className="testimonial-content">
                     <h3>{testimonial.name}</h3>
                     <p className="testimonial-text">{testimonial.text}</p>

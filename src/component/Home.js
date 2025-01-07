@@ -1,5 +1,3 @@
-'use client'
-
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import heroImg from '../asset/img/hero img.png';
@@ -12,8 +10,7 @@ import img5 from '../asset/img/slider5.jpg';
 import logoss from "../asset/img/Engtern_logo.png";
 
 const HomePage = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,9 +18,15 @@ const HomePage = () => {
     message: ''
   });
   const [showChatBox, setShowChatBox] = useState(false);
+  const [showMessageBox, setShowMessageBox] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true);
+    // Show message box after 5 seconds
+    const timer = setTimeout(() => {
+      setShowMessageBox(true);
+    }, 5000);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   const handleSubmit = (e) => {
@@ -49,7 +52,12 @@ const HomePage = () => {
 
   const CourseCard = ({ level, description }) => {
     return (
-      <div className="bg-gray-100 p-8 rounded-3xl border-2 border-blue-800 flex flex-col items-center text-center">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3 }}
+        className="bg-gray-100 p-6 rounded-3xl border-2 border-blue-800 flex flex-col items-center text-center"
+      >
         <svg
           className="w-12 h-12 text-teal-500 mb-4"
           fill="currentColor"
@@ -60,19 +68,18 @@ const HomePage = () => {
         </svg>
         <h3 className="text-yellow-400 text-xl font-semibold mb-4">{level}</h3>
         <p className="text-gray-600 mb-6 leading-relaxed">{description}</p>
-        {/* <button 
+        <button 
           onClick={() => setShowModal(true)}
           className="bg-teal-500 text-white px-8 py-2 rounded-md hover:bg-teal-600 transition-colors"
         >
           Demo
-        </button> */}
-      </div>
+        </button>
+      </motion.div>
     );
   };
 
   const ImageCarousel = () => {
     const images = [img1, img2, img3, img4, img5];
-
     const [currentIndex, setCurrentIndex] = useState(0);
     const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
     const [isHovered, setIsHovered] = useState(false);
@@ -123,7 +130,12 @@ const HomePage = () => {
     };
 
     return (
-      <div className="image-carousel-section">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="image-carousel-section py-8"
+      >
         <div className="carousel-container">
           <div 
             className="carousel-wrapper"
@@ -131,16 +143,17 @@ const HomePage = () => {
             onMouseLeave={() => setIsHovered(false)}
           >
             <button className="carousel-button prev" onClick={handlePrevious}>❮</button>
-            <div 
+            <motion.div 
               className="images-wrapper"
-              style={{
-                transform: `translateX(-${currentIndex * (100 / getItemsToShow())}%)`
-              }}
+              animate={{ x: -currentIndex * (100 / getItemsToShow()) + '%' }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
               {images.map((image, index) => (
-                <div 
+                <motion.div 
                   className="image-card" 
                   key={index}
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <div className="relative w-full h-64 bg-gray-100 overflow-hidden">
                     <img 
@@ -149,9 +162,9 @@ const HomePage = () => {
                       className="object-contain w-full h-full"
                     />
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
             <button className="carousel-button next" onClick={handleNext}>❯</button>
           </div>
           <div className="carousel-dots">
@@ -164,7 +177,7 @@ const HomePage = () => {
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     );
   };
 
@@ -213,28 +226,28 @@ const HomePage = () => {
         image: logoss
       }
     ];
-  
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
     const [isHovered, setIsHovered] = useState(false);
-  
+
     useEffect(() => {
       const handleResize = () => {
         setWindowWidth(window.innerWidth);
       };
-  
+
       if (typeof window !== 'undefined') {
         setWindowWidth(window.innerWidth);
         window.addEventListener('resize', handleResize);
       }
-  
+
       return () => {
         if (typeof window !== 'undefined') {
           window.removeEventListener('resize', handleResize);
         }
       };
     }, []);
-  
+
     useEffect(() => {
       if (!isHovered) {
         const timer = setInterval(() => {
@@ -243,52 +256,59 @@ const HomePage = () => {
             return prevIndex >= maxIndex ? 0 : prevIndex + 1;
           });
         }, 3000);
-  
+
         return () => clearInterval(timer);
       }
     }, [isHovered]);
-  
+
     const getItemsToShow = () => {
       if (windowWidth >= 1024) return 3;
       if (windowWidth >= 768) return 2;
       return 1;
     };
-  
+
     const handlePrevious = () => {
       setCurrentIndex((prevIndex) => {
         const maxIndex = testimonials.length - getItemsToShow();
         return prevIndex === 0 ? maxIndex : prevIndex - 1;
       });
     };
-  
+
     const handleNext = () => {
       setCurrentIndex((prevIndex) => {
         const maxIndex = testimonials.length - getItemsToShow();
         return prevIndex >= maxIndex ? 0 : prevIndex + 1;
       });
     };
-  
+
     return (
-      <div className="testimonials-section bg-gray-100 py-16">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="testimonials-section bg-gray-100 py-8"
+      >
         <div className="testimonials-container max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8">What Our Students Say</h2>
+          <h2 className="text-3xl font-bold text-center mb-6">What Our Students Say</h2>
           <div 
             className="carousel-container relative"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
             <button className="carousel-button prev absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md" onClick={handlePrevious}>❮</button>
-            <div 
+            <motion.div 
               className="testimonials-wrapper flex transition-transform duration-500 ease-in-out"
-              style={{
-                transform: `translateX(-${currentIndex * (100 / getItemsToShow())}%)`
-              }}
+              animate={{ x: -currentIndex * (100 / getItemsToShow()) + '%' }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
               {testimonials.map((testimonial, index) => (
-                <div 
+                <motion.div 
                   className="testimonial-card bg-white rounded-lg shadow-md p-6 mx-2 flex-shrink-0"
                   style={{ width: `calc(${100 / getItemsToShow()}% - 1rem)` }}
                   key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
                 >
                   <div className="testimonial-header flex justify-center items-center mb-4">
                     <div className="testimonial-image w-24 h-24 bg-gray-200 rounded-full overflow-hidden">
@@ -304,12 +324,12 @@ const HomePage = () => {
                     <p className="text-gray-600 mb-4">{testimonial.text}</p>
                     <p className="text-sm text-gray-500">{testimonial.role}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
             <button className="carousel-button next absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md" onClick={handleNext}>❯</button>
           </div>
-          <div className="carousel-dots flex justify-center mt-8">
+          <div className="carousel-dots flex justify-center mt-6">
             {Array.from({ length: testimonials.length - getItemsToShow() + 1 }).map((_, idx) => (
               <button
                 key={idx}
@@ -319,7 +339,7 @@ const HomePage = () => {
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     );
   };
 
@@ -427,15 +447,16 @@ const HomePage = () => {
         />
       </motion.div>
 
-      <div
-        className={`max-w-4xl mx-auto p-4 transition-all duration-500 ease-out ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
-        }`}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-4xl mx-auto p-4 transition-all duration-500 ease-out"
       >
-        <div className="flex flex-col sm:flex-row items-center justify-between bg-white rounded-lg shadow-sm p-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between bg-white rounded-lg shadow-sm p-4 sm:p-6 ml-[250px]">
           <div className="flex items-center mb-4 sm:mb-0">
-            <div className="relative w-32 h-16 mr-4">
-              <div className="absolute inset-0 bg-purple-100 rounded-full"></div>
+            <div className="relative w-24 h-24 sm:w-32 sm:h-16 mr-4">
+              <div className="absolute inset-0 bg-purple-100"></div>
               <img
                 src={englishImg}
                 alt="English course logo"
@@ -451,45 +472,79 @@ const HomePage = () => {
           </div>
           <button 
             onClick={() => setShowModal(true)}
-            className="w-full sm:w-auto px-6 py-2 bg-yellow-400 hover:bg-yellow-500 text-white font-medium rounded-md transition-colors duration-300"
+            className="w-full mr-[170px] sm:w-auto px-6 py-2 bg-yellow-400 hover:bg-yellow-500 text-white font-medium rounded-md transition-colors duration-500  "
           >
             Contact Now
           </button>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="bg-[#f8f0ff] py-16">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-[#f8f0ff] py-12"
+      >
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Why learn with our Courses?
             </h2>
-            <p className="max-w-3xl mx-auto text-gray-600 text-lg ">
+            <p className="max-w-3xl mx-auto text-gray-600 text-lg">
               Interactive & Engaging Lessons: Our courses are designed to keep
               you motivated and actively involved with dynamic exercises,
               quizzes, and real-world conversations.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 rounded-3x ">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {courses.map((course, index) => (
               <CourseCard
                 key={index}
                 level={course.level}
                 description={course.description}
-                className="bg-green-500 rounded-3xl "
               />
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <ImageCarousel />
 
       <Testimonials />
 
-      {/* WhatsApp Chat Box */}
+      {/* Message Box */}
       <div className="fixed bottom-4 right-4 z-50">
+        {/* Initial Message Box */}
+        {showMessageBox && !showChatBox && (
+          <div className="bg-[#1e3a8a] rounded-lg shadow-lg w-[300px]">
+            <button 
+              onClick={() => setShowMessageBox(false)}
+              className="absolute top-2 right-2 text-white/80 hover:text-white"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </button>
+            <div className="p-6 text-white">
+              <h3 className="text-lg font-medium mb-2">👋 Hi! Have any queries?</h3>
+              <p className="text-sm text-white/80">
+                Feel free to ask your queries here. We are always ready to assist you anytime.
+              </p>
+              <button 
+                onClick={() => {
+                  setShowChatBox(true);
+                  setShowMessageBox(false);
+                }}
+                className="mt-4 w-full bg-white text-[#1e3a8a] py-2 px-4 rounded-md hover:bg-white/90 transition-colors font-medium"
+              >
+                Contact us
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* WhatsApp Chat Box */}
         {showChatBox && (
           <div className="bg-white rounded-lg shadow-lg w-[350px]">
             <div className="p-4 bg-[#075E54] text-white rounded-t-lg">
@@ -499,7 +554,9 @@ const HomePage = () => {
                   onClick={() => setShowChatBox(false)}
                   className="text-white hover:text-gray-200"
                 >
-                  ✕
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
                 </button>
               </div>
             </div>
@@ -548,10 +605,12 @@ const HomePage = () => {
             </div>
           </div>
         )}
-        {!showChatBox && (
+
+        {/* Contact Button */}
+        {!showChatBox && !showMessageBox && (
           <div className="flex flex-col items-end gap-2">
             <button
-              onClick={() => setShowChatBox(true)}
+              onClick={() => setShowMessageBox(true)}
               className="bg-white text-gray-700 px-4 py-2 rounded-full shadow-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
             >
               Contact us
@@ -565,7 +624,7 @@ const HomePage = () => {
       <style jsx>{`
         .hero-section {
           background-color: #706fe5;
-          padding: 4rem 1rem;
+          padding: 3rem 1rem;
           text-align: center;
         }
 
@@ -575,14 +634,14 @@ const HomePage = () => {
         }
 
         .hero-content h1 {
-          font-size: 3.75rem;
+          font-size: 3rem;
           font-weight: 800;
           color: white;
           margin-bottom: 1rem;
         }
 
         .hero-content p {
-          font-size: 1.25rem;
+          font-size: 1.125rem;
           color: white;
           max-width: 36rem;
           margin: 1rem auto;
@@ -590,7 +649,7 @@ const HomePage = () => {
 
         .image-carousel-section {
           background-color: #f9fafb;
-          padding: 4rem 1rem;
+          padding: 3rem 1rem;
         }
 
         .carousel-container {
@@ -608,18 +667,18 @@ const HomePage = () => {
 
         .images-wrapper {
           display: flex;
-          gap: 1rem;
+          gap: 0.75rem;
           transition: transform 0.5s ease;
           width: 100%;
         }
 
         .image-card {
-          flex: 0 0 calc(33.333% - 1rem);
-          margin-right: 1rem;
+          flex: 0 0 calc(33.333% - 0.75rem);
+          margin-right: 0.75rem;
           border-radius: 0.5rem;
           overflow: hidden;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-          height: 300px;
+          height: 250px;
         }
 
         .carousel-image {
@@ -637,8 +696,8 @@ const HomePage = () => {
           background: #ffffff;
           border: none;
           border-radius: 50%;
-          width: 40px;
-          height: 40px;
+          width: 36px;
+          height: 36px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -667,7 +726,7 @@ const HomePage = () => {
           display: flex;
           justify-content: center;
           gap: 0.5rem;
-          margin-top: 2rem;
+          margin-top: 1.5rem;
         }
 
         .dot {
@@ -690,7 +749,7 @@ const HomePage = () => {
         /* Extra Small Devices (phones, 360px and up) */
         @media (min-width: 360px) {
           .hero-content h1 {
-            font-size: 1.75rem;
+            font-size: 1.5rem;
           }
           
           .hero-content p {
@@ -721,7 +780,7 @@ const HomePage = () => {
         /* Small Devices (larger phones, 480px and up) */
         @media (min-width: 480px) {
           .hero-content h1 {
-            font-size: 2rem;
+            font-size: 1.75rem;
           }
 
           .hero-content p {
@@ -740,7 +799,7 @@ const HomePage = () => {
         /* Medium Devices (tablets, 768px and up) */
         @media (min-width: 768px) {
           .hero-content h1 {
-            font-size: 2.5rem;
+            font-size: 2.25rem;
           }
 
           .hero-content p {
@@ -748,7 +807,7 @@ const HomePage = () => {
           }
 
           .image-card {
-            flex: 0 0 calc(50% - 1rem);
+            flex: 0 0 calc(50% - 0.75rem);
             height: 250px;
           }
 
@@ -758,7 +817,7 @@ const HomePage = () => {
           }
 
           .flex-col.sm\\:flex-row {
-            gap: 2rem;
+            gap: 1.5rem;
           }
 
           .grid-cols-1.md\\:grid-cols-3 {
@@ -769,7 +828,7 @@ const HomePage = () => {
         /* Large Devices (desktops, 1024px and up) */
         @media (min-width: 1024px) {
           .hero-content h1 {
-            font-size: 3.75rem;
+            font-size: 3rem;
           }
 
           .hero-content p {
@@ -777,7 +836,7 @@ const HomePage = () => {
           }
 
           .image-card {
-            flex: 0 0 calc(33.333% - 1rem);
+            flex: 0 0 calc(33.333% - 0.75rem);
             height: 300px;
           }
 
@@ -974,7 +1033,7 @@ const HomePage = () => {
         /* Testimonials Section Styles */
         .testimonials-section {
           background-color: #f9fafb;
-          padding: 4rem 1rem;
+          padding: 3rem 1rem;
         }
 
         .testimonials-container {
@@ -986,24 +1045,23 @@ const HomePage = () => {
 
         .testimonials-wrapper {
           display: flex;
-          gap: 1rem;
+          gap: 0.75rem;
           transition: transform 0.5s ease;
           width: 100%;
-        
         }
 
         .testimonial-card {
           background: #ffffff;
           border-radius: 0.5rem;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-          padding: 2rem;
-          flex: 0 0 calc(33.333% - 1rem);
-          margin-right: 1rem;
+          padding: 1.5rem;
+          flex: 0 0 calc(33.333% - 0.75rem);
+          margin-right: 0.75rem;
         }
 
         @media (max-width: 1024px) {
           .testimonial-card {
-            flex: 0 0 calc(50% - 1rem);
+            flex: 0 0 calc(50% - 0.75rem);
           }
         }
 
@@ -1019,3 +1077,4 @@ const HomePage = () => {
 
 export default HomePage;
 
+  

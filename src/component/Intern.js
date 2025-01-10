@@ -6,7 +6,7 @@ const InternPage = () => {
       <header className="hero-section">
         <div className="container">
           <h1>Intern</h1>
-          <p className="breadcrumb">
+          {/* <p className="breadcrumb">
             <span>
               <a href="/" className="hover-underline">
                 Home
@@ -18,7 +18,7 @@ const InternPage = () => {
                 Student
               </a>
             </span>
-          </p>
+          </p> */}
         </div>
       </header>
 
@@ -27,10 +27,12 @@ const InternPage = () => {
           width: 100%;
         }
         .hero-section {
-          background-color: #706fe5;
+          background-color: #3cc0c7;
           color: white;
           padding: 64px 16px;
           text-align: center;
+           height: 400px;
+            margin-top: 20px;
         }
         .container {
           max-width: 1200px;
@@ -39,7 +41,7 @@ const InternPage = () => {
         h1 {
           font-size: 3.75rem;
           font-weight: 800;
-          margin-bottom: 16px;
+          margin-top: 50px
         }
         .breadcrumb {
           font-size: 0.875rem;

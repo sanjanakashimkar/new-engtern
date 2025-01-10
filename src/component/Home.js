@@ -1,6 +1,8 @@
+"use client"
+
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import heroImg from '../asset/img/hero img.png';
+import heroImg from '../asset/video/Untitled design.gif';
 import englishImg from '../asset/img/englishhhh.png';
 import img1 from '../asset/img/slider1.jpg';
 import img2 from '../asset/img/slider2.jpg';
@@ -21,13 +23,24 @@ const HomePage = () => {
   const [showMessageBox, setShowMessageBox] = useState(false);
 
   useEffect(() => {
-    // Show message box after 5 seconds
+    const timer = setTimeout(() => {
+      setShowModal(true);
+    }, 1000); // Show modal after 5 seconds
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setShowMessageBox(true);
     }, 5000);
     
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    console.log('showModal state changed:', showModal);
+  }, [showModal]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,8 +52,9 @@ const HomePage = () => {
 
     const whatsappMessage = `Name: ${encodedName}%0AEmail: ${encodedEmail}%0APhone: ${encodedNumber}%0AMessage: ${encodedMessage}`;
     
-    window.open(`https://wa.me/+917038570978?text=${whatsappMessage}`, '_blank');
+    window.open(`https://wa.me/+916398542286?text=${whatsappMessage}`, '_blank');
     
+    setShowModal(false);
     setShowChatBox(false);
     setFormData({
       name: '',
@@ -69,7 +83,10 @@ const HomePage = () => {
         <h3 className="text-yellow-400 text-xl font-semibold mb-4">{level}</h3>
         <p className="text-gray-600 mb-6 leading-relaxed">{description}</p>
         <button 
-          onClick={() => setShowModal(true)}
+          onClick={() => {
+            console.log("Demo button clicked");
+            setShowModal(true);
+          }}
           className="bg-teal-500 text-white px-8 py-2 rounded-md hover:bg-teal-600 transition-colors"
         >
           Demo
@@ -304,7 +321,7 @@ const HomePage = () => {
               {testimonials.map((testimonial, index) => (
                 <motion.div 
                   className="testimonial-card bg-white rounded-lg shadow-md p-6 mx-2 flex-shrink-0"
-                  style={{ width: `calc(${100 / getItemsToShow()}% - 1rem)` }}
+                  style={{ width: `calc(${100 / getItemsToShow()}% - 1rem) `}}
                   key={index}
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -364,71 +381,74 @@ const HomePage = () => {
   return (
     <div className="bg-cover overflow-hidden">
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
-          <div className="relative w-full max-w-md">
-            <div className="bg-[#31A7D4] rounded-lg overflow-hidden">
-              <div className="p-6 text-white">
-                <button 
-                  onClick={() => setShowModal(false)}
-                  className="absolute top-4 right-4 text-white hover:text-gray-200"
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="fixed inset-0 z-[99999] flex items-center justify-center bg-black bg-opacity-50"
+        >
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+            <div className="bg-[#31A7D4] p-6 text-white rounded-t-lg relative">
+              <button 
+                onClick={() => setShowModal(false)}
+                className="absolute top-4 right-4 text-white hover:text-gray-200"
+              >
+                ✕
+              </button>
+              <h2 className="text-sm mb-2">Englern: English Made Easy</h2>
+              <h3 className="text-2xl font-bold">Book A Demo Now</h3>
+              <p className="text-lg">@ ₹49</p>
+            </div>
+            <div className="p-6">
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Your name"
+                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-[#31A7D4]"
+                    value={formData.name}
+                    onChange={(e) => setFormData(prev => ({...prev, name: e.target.value}))}
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    placeholder="Your email"
+                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-[#31A7D4]"
+                    value={formData.email}
+                    onChange={(e) => setFormData(prev => ({...prev, email: e.target.value}))}
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="tel"
+                    placeholder="Your Number"
+                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-[#31A7D4]"
+                    value={formData.number}
+                    onChange={(e) => setFormData(prev => ({...prev, number: e.target.value}))}
+                    required
+                  />
+                </div>
+                <div>
+                  <textarea
+                    placeholder="Your message (optional)"
+                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-[#31A7D4] h-24 resize-none"
+                    value={formData.message}
+                    onChange={(e) => setFormData(prev => ({...prev, message: e.target.value}))}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full py-3 bg-[#208a91] text-white rounded-md hover:bg-[#47bcc5] transition-colors text-bold"
                 >
-                  ✕
+                  Submit
                 </button>
-                <h2 className="text-sm mb-2">Englern: English Made Easy</h2>
-                <h3 className="text-2xl font-bold">Book A Demo Now</h3>
-                <p className="text-lg">@ ₹49</p>
-              </div>
-              <div className="bg-white p-6 rounded-t-2xl -mt-2">
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Your name"
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-[#31A7D4]"
-                      value={formData.name}
-                      onChange={(e) => setFormData(prev => ({...prev, name: e.target.value}))}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="email"
-                      placeholder="Your email"
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-[#31A7D4]"
-                      value={formData.email}
-                      onChange={(e) => setFormData(prev => ({...prev, email: e.target.value}))}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="tel"
-                      placeholder="Your Number"
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-[#31A7D4]"
-                      value={formData.number}
-                      onChange={(e) => setFormData(prev => ({...prev, number: e.target.value}))}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <textarea
-                      placeholder="Your message (optional)"
-                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-[#31A7D4] h-24 resize-none"
-                      value={formData.message}
-                      onChange={(e) => setFormData(prev => ({...prev, message: e.target.value}))}
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full py-3 bg-[#B666D2] text-white rounded-md hover:bg-[#9B4CB8] transition-colors"
-                  >
-                    Submit
-                  </button>
-                </form>
-              </div>
+              </form>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
 
       <motion.div
@@ -453,30 +473,34 @@ const HomePage = () => {
         transition={{ duration: 0.5 }}
         className="max-w-4xl mx-auto p-4 transition-all duration-500 ease-out"
       >
-        <div className="flex flex-col sm:flex-row items-center justify-between bg-white rounded-lg shadow-sm p-4 sm:p-6 ml-[250px]">
-          <div className="flex items-center mb-4 sm:mb-0">
-            <div className="relative w-24 h-24 sm:w-32 sm:h-16 mr-4">
-              <div className="absolute inset-0 bg-purple-100"></div>
-              <img
-                src={englishImg}
-                alt="English course logo"
-                className="absolute inset-0 w-full h-full object-cover border-2 border-purple-200 rounded-full"
-              />
-            </div>
-            <div>
-              <h2 className="text-xl font-semibold text-teal-500">
-                Book Your Demo Now
-              </h2>
-              <p className="text-sm text-gray-600">Try for 25-30 minutes</p>
-            </div>
-          </div>
-          <button 
-            onClick={() => setShowModal(true)}
-            className="w-full mr-[170px] sm:w-auto px-6 py-2 bg-yellow-400 hover:bg-yellow-500 text-white font-medium rounded-md transition-colors duration-500  "
-          >
-            Contact Now
-          </button>
-        </div>
+       <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-between bg-white rounded-lg shadow-sm p-4 sm:p-6 ml-0 sm:ml-[250px]">
+  <div className="flex flex-col sm:flex-row items-center mb-4 sm:mb-0">
+    <div className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-16 mr-0 sm:mr-4">
+      <div className="absolute inset-0 bg-purple-100"></div>
+      <img
+        src={englishImg}
+        alt="English course logo"
+        className="absolute inset-0 w-full h-full object-cover border-2 border-purple-200 rounded-full"
+      />
+    </div>
+    <div className="text-center sm:text-left">
+      <h2 className="text-lg sm:text-xl font-semibold text-teal-500">
+        Book Your Demo Now
+      </h2>
+      <p className="text-xs sm:text-sm text-gray-600">Try for 25-30 minutes</p>
+    </div>
+  </div>
+  <button
+    onClick={() => {
+      console.log("Contact Now button clicked");
+      setShowModal(true);
+    }}
+    className="w-full sm:w-auto px-4 sm:px-6 py-2 bg-yellow-400 hover:bg-yellow-500 text-white font-medium rounded-md transition-colors duration-500 "
+  >
+    Contact Now
+  </button>
+</div>
+
       </motion.div>
 
       <motion.div
@@ -1076,5 +1100,3 @@ const HomePage = () => {
 }
 
 export default HomePage;
-
-  

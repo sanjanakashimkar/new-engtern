@@ -6,7 +6,7 @@ const Curriculum = () => {
       <div className="hero-section">
         <div className="hero-content">
           <h1>Curriculum</h1>
-          <p className="breadcrumb">
+          {/* <p className="breadcrumb">
             <span>
               <a href="/" className="hover-underline">
                 Home
@@ -18,7 +18,7 @@ const Curriculum = () => {
                 Curriculum
               </a>
             </span>
-          </p>
+          </p> */}
         </div>
       </div>
 

@@ -3,7 +3,6 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Navbar from './component/Navbar';
 import Footer from './component/Footer';
-import Home from './component/Home';
 import About from './component/About';
 import Curriculum from './component/Curriculum';
 import Kids from './component/Kids';
@@ -14,6 +13,7 @@ import Teacher from './component/Teacher';
 import Intern from './component/Intern';
 import Gallery from './component/Gallery';
 import Contact from './component/Contact';
+import HomePage from './component/Home';
 
 
 
@@ -28,7 +28,7 @@ function App() {
 
       <Routes>
 
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<HomePage/>} />
         <Route path="/about" element={<About/>} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/curriculum" element={<Curriculum/>} />

@@ -1,26 +1,42 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import kid from '../asset/img/kids.webp';
 import kids from "../asset/video/kids.mp4";
 
-function Kids() {
-  // Animation Configurations
-  const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 },
-  };
-
-  const staggerChildren = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1
-      }
+const staggerChildren = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
     }
-  };
+  }
+};
 
-  // WhatsApp number - replace with your actual WhatsApp number
-  const whatsappNumber = '7261943678';
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  show: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.6 }
+  }
+};
+
+function Kids() {
+  const headerRef = useRef(null);
+  const publicSpeakingRef = useRef(null);
+  const videoRef = useRef(null);
+  const contactRef = useRef(null);
+
+  const headerInView = useInView(headerRef, { once: true, amount: 0.5 });
+  const publicSpeakingInView = useInView(publicSpeakingRef, { once: true, amount: 0.3 });
+  const videoInView = useInView(videoRef, { once: true, amount: 0.3 });
+  const contactInView = useInView(contactRef, { once: true, amount: 0.5 });
+
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+
+  const whatsappNumber = '+916398542286';
   const whatsappMessage = encodeURIComponent('Hi, I want to know more about Engtern!');
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
@@ -74,10 +90,11 @@ function Kids() {
 
       {/* Header Section */}
       <motion.main 
+        ref={headerRef}
         className="container mx-auto px-4 py-12"
         variants={staggerChildren}
-        initial="initial"
-        animate="animate"
+        initial="hidden"
+        animate={headerInView ? "show" : "hidden"}
       >
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16">
           {/* Left Column - Text Content */}
@@ -150,21 +167,22 @@ function Kids() {
 
       {/* Public Speaking Section */}
       <motion.div 
+        ref={publicSpeakingRef}
         className="bg-gradient-to-b from-white to-gray-50 py-16"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        animate={publicSpeakingInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
         <div className="container mx-auto px-4">
           <motion.div 
             className="max-w-4xl mx-auto mb-16"
             variants={fadeInUp}
+            initial="hidden"
+            animate={publicSpeakingInView ? "show" : "hidden"}
           >
             <motion.p
               className="text-lg sm:text-xl text-gray-700 leading-relaxed text-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
+              variants={fadeInUp}
             >
               <motion.span 
                 className="text-[#FFD700] font-semibold"
@@ -183,16 +201,19 @@ function Kids() {
           {/* Title */}
           <motion.h2
             className="text-3xl sm:text-4xl font-bold text-center text-[#00BCD4] mb-12"
-            {...fadeInUp}
+            variants={fadeInUp}
+            initial="hidden"
+            animate={publicSpeakingInView ? "show" : "hidden"}
           >
             Our Course Structure
           </motion.h2>
 
           {/* Video Section */}
           <motion.div 
+            ref={videoRef}
             className="w-full max-w-5xl mx-auto mb-12"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={videoInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="aspect-w-16 aspect-h-9 rounded-lg shadow-lg overflow-hidden">
@@ -208,11 +229,12 @@ function Kids() {
             </div>
           </motion.div>
 
-          {/* Contact Button - Moved here */}
+          {/* Contact Button */}
           <motion.div 
+            ref={contactRef}
             className="text-center mt-8"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={contactInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <motion.a 
@@ -234,8 +256,15 @@ function Kids() {
           </motion.div>
         </div>
       </motion.div>
+
+      {/* Parallax background effect */}
+      <motion.div
+        className="fixed inset-0 z-[-1] bg-gradient-to-b from-blue-100 to-blue-200 opacity-50"
+        style={{ y }}
+      />
     </motion.div>
   );
 }
 
 export default Kids;
+

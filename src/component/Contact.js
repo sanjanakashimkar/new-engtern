@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import contactBgImage from '../asset/img/contact.png';
+import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt } from 'react-icons/fa';
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -15,7 +17,7 @@ function Contact() {
     console.log('Form submitted:', formData);
     
     // Prepare WhatsApp message
-    const whatsappNumber = '+917038570978'; // Replace with your WhatsApp number
+    const whatsappNumber = '+916398542286'; // Replace with your WhatsApp number
     const message = `Name: ${formData.name}%0AEmail: ${formData.email}%0ANumber: ${formData.number}%0AMessage: ${formData.message}`;
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
     
@@ -38,140 +40,109 @@ function Contact() {
       transition={{ duration: 0.5 }}
     >
       <div className="hero-section">
+        <div className="hero-overlay"></div>
         <motion.div 
           className="hero-content"
           initial={{ y: -20 }}
           animate={{ y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <h1>Contact</h1>
-          <p className="breadcrumb">
-            <span>
-              <a href="/" className="hover-underline">
-                Home
-              </a>
-            </span>
-            <span className="separator">›</span>
-            <span>
-              <a href="/contact" className="hover-underline">
-                Contact
-              </a>
-            </span>
-          </p>
+       
+          
         </motion.div>
       </div>
 
       {/* Contact Info Section */}
       <motion.div 
-        className="container mx-auto px-4 py-12"
+        className="container"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}
       >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div className="contact-info">
           {/* Address */}
           <motion.div 
-            className="text-center"
+            className="info-item"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <div className="w-12 h-12 bg-[#00A6A9] rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
+            <div className="icon-wrapper">
+              <FaMapMarkerAlt className="icon" />
             </div>
-            <h3 className="text-lg font-bold mb-2">ADDRESS</h3>
-            <p className="text-gray-600 font-bold">Kamteshwar, Sonegaon Garhwal, Pauri ,<br />Uttarakhand, 246174</p>
+            <h3>ADDRESS</h3>
+            <p>Kamteshwar, Sonegaon Garhwal, Pauri ,<br />Uttarakhand, 246174</p>
           </motion.div>
 
           {/* Mail */}
           <motion.div 
-            className="text-center"
+            className="info-item"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <div className="w-12 h-12 bg-[#00A6A9] rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
+            <div className="icon-wrapper">
+              <FaEnvelope className="icon" />
             </div>
-            <h3 className="text-lg font-bold mb-2">MAIL</h3>
-            <p className="text-gray-600 font-bold">diyapart142@gmail.com</p>
+            <h3>MAIL</h3>
+            <p>diyapart142@gmail.com</p>
           </motion.div>
 
           {/* Phone */}
           <motion.div 
-            className="text-center"
+            className="info-item"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <div className="w-12 h-12 bg-[#00A6A9] rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
+            <div className="icon-wrapper">
+              <FaPhoneAlt className="icon" />
             </div>
-            <h3 className="text-lg font-bold mb-2">PHONE</h3>
-            <p className="text-gray-600 font-bold">+91 6398542286</p>
+            <h3>PHONE</h3>
+            <p>+91 6398542286</p>
           </motion.div>
         </div>
 
         {/* Contact Form and Map Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="form-map-container">
           {/* Contact Form */}
           <motion.div 
-            className="bg-purple-50 p-6 rounded-lg"
+            className="contact-form"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7] focus:border-transparent"
-                  required
-                />
-              </div>
-              <div>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Your email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7] focus:border-transparent"
-                  required
-                />
-              </div>
-              <div>
-                <input
-                  type="tel"
-                  name="number"
-                  placeholder="Your Number"
-                  value={formData.number}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7] focus:border-transparent"
-                  required
-                />
-              </div>
-              <div>
-                <textarea
-                  name="message"
-                  placeholder="Your message (optional)"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={4}
-                  className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#6C5CE7] focus:border-transparent"
-                ></textarea>
-              </div>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="name"
+                placeholder="Your name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="tel"
+                name="number"
+                placeholder="Your Number"
+                value={formData.number}
+                onChange={handleChange}
+                required
+              />
+              <textarea
+                name="message"
+                placeholder="Your message (optional)"
+                value={formData.message}
+                onChange={handleChange}
+                rows={4}
+              ></textarea>
               <motion.button
                 type="submit"
-                className="w-full bg-[#6C5CE7] text-white py-2 px-6 rounded-md hover:bg-[#5A4ED1] transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -182,7 +153,7 @@ function Contact() {
 
           {/* Map */}
           <motion.div 
-            className="h-[400px] rounded-lg overflow-hidden"
+            className="map-container"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.8 }}
@@ -205,13 +176,27 @@ function Contact() {
           width: 100%;
         }
         .hero-section {
-          background-color: #706fe5;
-          padding: 4rem 1rem;
+          position: relative;
+          height: 400px;
+          margin-top: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           text-align: center;
+          background-image: url(${contactBgImage});
+          background-size: cover;
+          background-position: center;
+        }
+        .hero-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
         }
         .hero-content {
-          max-width: 1280px;
-          margin: 0 auto;
+          position: relative;
+          z-index: 1;
         }
         .hero-content h1 {
           font-size: 3.75rem;
@@ -233,9 +218,148 @@ function Contact() {
           color: white;
           text-decoration: none;
         }
+        .container {
+          max-width: 1280px;
+          margin: 0 auto;
+          padding: 2rem 1rem;
+        }
+        .contact-info {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 2rem;
+          margin-bottom: 2rem;
+        }
+        .info-item {
+          text-align: center;
+        }
+        .icon-wrapper {
+          width: 3rem;
+          height: 3rem;
+          background-color: #00A6A9;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto 1rem;
+        }
+        .icon {
+          color: white;
+          font-size: 1.5rem;
+        }
+        .info-item h3 {
+          font-size: 1.25rem;
+          font-weight: bold;
+          margin-bottom: 0.5rem;
+        }
+        .info-item p {
+          color: #4a5568;
+          font-weight: bold;
+        }
+        .form-map-container {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .contact-form {
+          background-color: #f3e8ff;
+          padding: 2rem;
+          border-radius: 0.5rem;
+        }
+        .contact-form form {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .contact-form input,
+        .contact-form textarea {
+          width: 100%;
+          padding: 0.75rem 1rem;
+          border: 1px solid #cbd5e0;
+          border-radius: 0.375rem;
+          font-size: 1rem;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+          outline: none;
+          border-color: #6C5CE7;
+          box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+        }
+        .contact-form button {
+          background-color: #6C5CE7;
+          color: white;
+          padding: 0.75rem 1.5rem;
+          border: none;
+          border-radius: 0.375rem;
+          font-size: 1rem;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+        .contact-form button:hover {
+          background-color: #5A4ED1;
+        }
+        .map-container {
+          height: 400px;
+          border-radius: 0.5rem;
+          overflow: hidden;
+        }
+        @media (min-width: 768px) {
+          .form-map-container {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
         @media (max-width: 768px) {
           .hero-content h1 {
             font-size: 2.5rem;
+          }
+        }
+
+        /* New media queries for responsiveness */
+        @media (max-width: 1024px) {
+          .container {
+            padding: 1rem;
+          }
+          .contact-info {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          }
+          .form-map-container {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .hero-section {
+            height: 300px;
+          }
+          .hero-content h1 {
+            font-size: 2.5rem;
+          }
+          .contact-info {
+            grid-template-columns: 1fr;
+          }
+          .info-item {
+            padding: 1rem;
+          }
+          .contact-form {
+            padding: 1.5rem;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hero-section {
+            height: 200px;
+          }
+          .hero-content h1 {
+            font-size: 2rem;
+          }
+          .container {
+            padding: 0.5rem;
+          }
+          .contact-form input,
+          .contact-form textarea {
+            padding: 0.5rem 0.75rem;
+          }
+          .map-container {
+            height: 300px;
           }
         }
       `}</style>

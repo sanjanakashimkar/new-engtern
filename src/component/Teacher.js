@@ -6,7 +6,7 @@ const TeacherPage = () => {
       <div className="hero-section">
         <div className="hero-content">
           <h1>Teacher</h1>
-          <p className="breadcrumb">
+          {/* <p className="breadcrumb">
             <span>
               <a href="/" className="hover-underline">
                 Home
@@ -18,7 +18,7 @@ const TeacherPage = () => {
                 Teacher
               </a>
             </span>
-          </p>
+          </p> */}
         </div>
       </div>
 
@@ -27,9 +27,11 @@ const TeacherPage = () => {
           width: 100%;
         }
         .hero-section {
-          background-color: #706fe5;
+          background-color: #3cc0c7;
           padding: 4rem 1rem;
           text-align: center;
+           height: 400px;
+            margin-top: 20px;
         }
         .hero-content {
           max-width: 1280px;
@@ -39,7 +41,7 @@ const TeacherPage = () => {
           font-size: 3.75rem;
           font-weight: 800;
           color: white;
-          margin-bottom: 1rem;
+          margin-top: 50px
         }
         .breadcrumb {
           font-size: 0.875rem;

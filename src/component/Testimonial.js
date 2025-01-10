@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logoss from "../asset/img/Engtern_logo.png";
+import testimonialImage from "../asset/img/testimonial.png";
 
 const Testimonials = () => {
   const testimonials = [
@@ -106,27 +107,37 @@ const Testimonials = () => {
       <style>
         {`
           .hero-section {
-            background-color:#706fe5 ;
-            padding: 4rem 1rem;
-            text-align: center;
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+            margin-top: 20px;
+          }
+
+          .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
           }
 
           .hero-content {
-            max-width: 1280px;
-            margin: 0 auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 10;
           }
 
           .hero-content h1 {
             font-size: 3.75rem;
             font-weight: 800;
-            color: white;
             margin-bottom: 1rem;
             animation: fadeInDown 1s ease-out;
           }
 
           .hero-content p {
             font-size: 1.25rem;
-            color: white;
             max-width: 36rem;
             margin: 1rem auto;
             animation: fadeInUp 1s ease-out 0.5s both;
@@ -325,48 +336,122 @@ const Testimonials = () => {
             100% { transform: scale(1); }
           }
 
+          @media (max-width: 1280px) {
+            .testimonials-container {
+              max-width: 100%;
+              padding: 0 2rem;
+            }
+            
+            .testimonial-card {
+              flex: 0 0 calc(50% - 1rem);
+            }
+          }
+
           @media (max-width: 1024px) {
+            .hero-section {
+              height: 350px;
+            }
+
+            .hero-content h1 {
+              font-size: 3rem;
+            }
+
             .testimonial-card {
               flex: 0 0 calc(50% - 1rem);
             }
           }
 
           @media (max-width: 768px) {
+            .hero-section {
+              height: 300px;
+            }
+
             .hero-content h1 {
               font-size: 2.5rem;
             }
             
             .hero-content p {
               font-size: 1rem;
+              max-width: 100%;
+            }
+
+            .testimonials-section {
+              padding: 2rem 1rem;
             }
 
             .testimonial-card {
               flex: 0 0 100%;
+            }
+
+            .carousel-button {
+              display: none;
+            }
+          }
+
+          @media (max-width: 640px) {
+            .hero-section {
+              height: 250px;
+            }
+
+            .hero-content h1 {
+              font-size: 2rem;
+            }
+
+            .testimonial-card {
+              padding: 1.5rem;
+            }
+
+            .testimonial-image {
+              width: 3rem;
+              height: 3rem;
+            }
+
+            .testimonial-content h3 {
+              font-size: 1.1rem;
+            }
+
+            .testimonial-text {
+              font-size: 0.9rem;
+            }
+
+            .testimonial-role {
+              font-size: 0.8rem;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .hero-section {
+              height: 200px;
+            }
+
+            .hero-content h1 {
+              font-size: 1.75rem;
+            }
+
+            .testimonials-container {
+              padding: 0 1rem;
+            }
+
+            .testimonial-card {
+              padding: 1rem;
             }
           }
         `}
       </style>
 
       <div className="hero-section">
+        <img
+          src={testimonialImage}
+          alt=""
+          className="hero-image"
+        />
         <div className="hero-content">
-          <h1>Testimonials</h1>
-          <p className="mt-2 text-sm">
-          <span>
-            <a href="/" className="hover:underline">
-              Home
-            </a>
-          </span>
-          <span className="mx-1">›</span>
-          <span>
-            <a href="/testimonials" className="hover:underline">
-              Testimonials
-            </a>
-          </span>
-        </p>
+         
         </div>
       </div>
 
       <div className="testimonials-section">
+      <h2 className="text-3xl font-bold text-center mb-6">What Our Students Say</h2>
         <div className="testimonials-container">
           <div 
             className="carousel-container"
@@ -390,7 +475,7 @@ const Testimonials = () => {
                       <img 
                         src={testimonial.image} 
                         alt={testimonial.name} 
-                        className="w-full h-full object-cover rounded-full"
+                        style={{ width: "150px", height: "150px", borderRadius: "50%", objectFit: "cover" }}
                       />
                     </div>
                   </div>
@@ -420,3 +505,4 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
+

@@ -7,6 +7,46 @@ const Footer = () => {
 
   return (
     <footer className="w-full bg-gray-100 text-gray-800">
+      <style jsx>{`
+        @media (max-width: 640px) {
+          .max-w-7xl {
+            padding: 1rem;
+          }
+          .gap-8 {
+            gap: 1rem;
+          }
+          .mb-4 {
+            margin-bottom: 0.5rem;
+          }
+          .space-y-2 {
+            margin-top: 0.25rem;
+          }
+          .mt-8 {
+            margin-top: 1rem;
+          }
+          .py-8 {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+          }
+        }
+
+        @media (min-width: 641px) and (max-width: 768px) {
+          .max-w-7xl {
+            padding: 1.5rem;
+          }
+          .gap-8 {
+            gap: 1.5rem;
+          }
+          .mt-8 {
+            margin-top: 1.5rem;
+          }
+          .py-8 {
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+          }
+        }
+      `}</style>
+
       <div className="max-w-7xl mx-auto px-4 py-8 sm:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {/* Logo Section */}
@@ -128,4 +168,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

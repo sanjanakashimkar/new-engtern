@@ -28,18 +28,69 @@ const About = () => {
         .animate-scaleIn:hover {
           animation: scaleIn 0.3s ease-out forwards;
         }
+
+        /* Text alignment media queries */
         @media (max-width: 768px) {
           .founder-content {
             flex-direction: column;
             align-items: center;
+            text-align: center;
           }
           .founder-image {
-            margin-left: 0;
-            margin-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+          }
+          h1, h3, p {
+            text-align: center;
+          }
+          .text-lg, .text-base {
+            text-align: center;
+            padding: 0 1rem;
+          }
+          ul {
+            text-align: left;
+            padding-left: 1rem;
+          }
+          .list-disc {
+            margin-left: 1rem;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .container {
+            padding: 0 1rem;
+          }
+          h1 {
+            font-size: 1.75rem;
+            line-height: 2.25rem;
+            text-align: center;
+          }
+          .text-lg {
+            font-size: 1rem;
+            line-height: 1.5rem;
+          }
+          .founder-content p {
+            padding: 0 0.5rem;
+          }
+          .list-disc {
+            margin-left: 0.5rem;
+          }
+        }
+
+        @media (min-width: 769px) {
+          .text-left-desktop {
+            text-align: left;
+          }
+          .founder-content {
+            text-align: center;
+          }
+          ul {
+            text-align: left;
           }
         }
       `}</style>
 
+      {/* Rest of your component code remains exactly the same */}
       <div className="container mx-auto px-4 py-8 animate-fadeIn">
         <div className="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0 md:space-x-8">
           <div className="w-full md:w-1/2">
@@ -82,13 +133,13 @@ const About = () => {
                 Co-Founder, English Communication & Public Speaker
               </p>
               <div className="flex justify-center space-x-4 mb-4">
-                <a href="#" className="bg-blue-600 p-2 rounded-full text-white hover:bg-blue-700 transition duration-300">
+                <a href="https://www.facebook.com/profile.php?id=61570419377220" className="bg-blue-600 p-2 rounded-full text-white hover:bg-blue-700 transition duration-300">
                   <Facebook size={20} />
                 </a>
-                <a href="#" className="bg-blue-600 p-2 rounded-full text-white hover:bg-blue-700 transition duration-300">
+                <a href="https://www.instagram.com/engtern2025/" className="bg-blue-600 p-2 rounded-full text-white hover:bg-blue-700 transition duration-300">
                   <Instagram size={20} />
                 </a>
-                <a href="#" className="bg-blue-600 p-2 rounded-full text-white hover:bg-blue-700 transition duration-300">
+                <a href="https://www.linkedin.com/in/engtern-english-made-easy-749b7a343/" className="bg-blue-600 p-2 rounded-full text-white hover:bg-blue-700 transition duration-300">
                   <Linkedin size={20} />
                 </a>
               </div>
@@ -99,36 +150,36 @@ const About = () => {
                 {isExpanded ? 'Read Less About Diya Pant' : 'Read More About Diya Pant '}
               </button>
               {isExpanded && (
-            <div className="mt-8 text-gray-700 animate-fadeIn max-w-3xl mx-auto px-4">
-              <h3 className='text-xl font-semibold text-yellow-500 mb-4'>About Diya Pant</h3>
-              <h4 className="text-lg font-semibold mb-2 text-teal-500">Multifaceted Professional Experience:</h4>
-              <ul className="list-disc list-inside mb-4">
-                <li>Content Writing Head</li>
-                <li>Public Speaking Instructor</li>
-                <li>HR and Coordinator</li>
-                <li>Guest Faculty at Central University, Uttarakhand</li>
-              </ul>
+                <div className="mt-8 text-gray-700 animate-fadeIn max-w-3xl mx-auto px-4">
+                  <h3 className='text-xl font-semibold text-yellow-500 mb-4'>About Diya Pant</h3>
+                  <h4 className="text-lg font-semibold mb-2 text-teal-500">Multifaceted Professional Experience:</h4>
+                  <ul className="list-disc list-inside mb-4">
+                    <li>Content Writing Head</li>
+                    <li>Public Speaking Instructor</li>
+                    <li>HR and Coordinator</li>
+                    <li>Guest Faculty at Central University, Uttarakhand</li>
+                  </ul>
 
-              <h4 className="text-lg font-semibold mb-2 text-yellow-500">Academic Excellence:</h4>
-              <p className="mb-2">Presented research papers at:</p>
-              <ul className="list-disc list-inside mb-4">
-                <li>National Conferences: IIT, Ministry of Culture, IGNCA</li>
-                <li>International Conferences</li>
-              </ul>
+                  <h4 className="text-lg font-semibold mb-2 text-yellow-500">Academic Excellence:</h4>
+                  <p className="mb-2">Presented research papers at:</p>
+                  <ul className="list-disc list-inside mb-4">
+                    <li>National Conferences: IIT, Ministry of Culture, IGNCA</li>
+                    <li>International Conferences</li>
+                  </ul>
 
-              <h4 className="text-lg font-semibold mb-2 text-yellow-500">Published Author:</h4>
-              <ul className="list-disc list-inside mb-4">
-                <li>"Say Hi to Emotions"</li>
-                <li>"Love Yourself"</li>
-              </ul>
+                  <h4 className="text-lg font-semibold mb-2 text-yellow-500">Published Author:</h4>
+                  <ul className="list-disc list-inside mb-4">
+                    <li>"Say Hi to Emotions"</li>
+                    <li>"Love Yourself"</li>
+                  </ul>
 
-              <h4 className="text-lg font-semibold mb-2 text-yellow-500">Founder of Engtern:</h4>
-              <p>
-                Dedicated to empowering individuals through English language skills and personal development, 
-                fostering growth and success.
-              </p>
-            </div>
-          )}
+                  <h4 className="text-lg font-semibold mb-2 text-yellow-500">Founder of Engtern:</h4>
+                  <p>
+                    Dedicated to empowering individuals through English language skills and personal development, 
+                    fostering growth and success.
+                  </p>
+                </div>
+              )}
             </div>
 
             <div className="w-full md:w-1/2 flex flex-col items-center founder-content">
@@ -157,7 +208,6 @@ const About = () => {
               </div>
             </div>
           </div>
-         
         </div>
       </section>
     </div>
@@ -165,4 +215,3 @@ const About = () => {
 };
 
 export default About;
-

@@ -149,53 +149,68 @@ const HomePage = () => {
 
     return (
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="image-carousel-section py-8"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 0.5 }}
+  className="image-carousel-section py-4 sm:py-2 w-full"
+>
+  <div className="carousel-container w-full">
+  <div 
+  className="carousel-wrapper relative flex items-center overflow-hidden w-[1200px] sm:w-[1200px] md:w-[1200px] lg:w-[1200px] h-auto"
+  onMouseEnter={() => setIsHovered(true)}
+  onMouseLeave={() => setIsHovered(false)}
+>
+
+      <button 
+        className="carousel-button prev absolute left-2 sm:left-4 text-sm sm:text-lg p-1 sm:p-2  z-10"
+        onClick={handlePrevious}
       >
-        <div className="carousel-container">
-          <div 
-            className="carousel-wrapper relative flex items-center overflow-hidden w-full"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+        ❮
+      </button>
+      <motion.div 
+        className="images-wrapper flex transition-transform duration-300 ease-in-out w-full  "
+        animate={{ x: -currentIndex * 100 + '%' }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      >
+        {images.map((image, index) => (
+          <motion.div 
+            className="image-card flex-shrink-0 w-full"
+            key={index}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2 }}
           >
-            <button className="carousel-button prev absolute left-0 text-xl p-2 bg-gray-200 rounded-full" onClick={handlePrevious}>❮</button>
-            <motion.div 
-              className="images-wrapper flex transition-transform duration-300 ease-in-out"
-              animate={{ x: -currentIndex * (100 / getItemsToShow()) + '%' }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            >
-              {images.map((image, index) => (
-                <motion.div 
-                  className="image-card flex-shrink-0 w-1/3 lg:w-1/2 md:w-2/3 sm:w-full"
-                  key={index}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="relative w-full h-64 bg-gray-100 overflow-hidden">
-                    <img 
-                      src={image} 
-                      alt={`Gallery image ${index + 1}`} 
-                      className="object-contain w-full h-full"
-                    />
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-            <button className="carousel-button next absolute right-0 text-xl p-2 bg-gray-200 rounded-full" onClick={handleNext}>❯</button>
-          </div>
-          <div className="carousel-dots flex justify-center mt-4">
-            {Array.from({ length: images.length - getItemsToShow() + 1 }).map((_, idx) => (
-              <button
-                key={idx}
-                className={`dot w-3 h-3 mx-1 rounded-full ${currentIndex === idx ? 'bg-black' : 'bg-gray-400'}`}
-                onClick={() => setCurrentIndex(idx)}
-              />
-            ))}
-          </div>
-        </div>
+           <div className="relative w-[400px] sm:w-[340px] md:w-[400px] lg:w-[500px] h-48 sm:h-64 md:h-80 lg:h-96 bg-gray-100 overflow-hidden">
+           <img 
+  src={image} 
+  alt={`Gallery image ${index + 1}`} 
+  className="object-contain w-[380px] sm:w-[220px] md:w-[300px] lg:w-[400px] h-auto"
+/>
+
+</div>
+
+          </motion.div>
+        ))}
       </motion.div>
+      <button 
+        className="carousel-button next absolute right-2 sm:right-4 text-sm sm:text-lg p-1 sm:p-2 bg-gray-200 rounded-full z-10"
+        onClick={handleNext}
+      >
+        ❯
+      </button>
+    </div>
+    <div className="carousel-dots flex justify-center mt-2 sm:mt-4">
+      {Array.from({ length: images.length }).map((_, idx) => (
+        <button
+          key={idx}
+          className={`dot w-2 h-2 sm:w-3 sm:h-3 mx-1 rounded-full ${currentIndex === idx ? 'bg-black' : 'bg-gray-400'}`}
+          onClick={() => setCurrentIndex(idx)}
+        />
+      ))}
+    </div>
+  </div>
+</motion.div>
+
+
     );
   };
 
@@ -306,15 +321,19 @@ const HomePage = () => {
         transition={{ duration: 0.5 }}
         className="testimonials-section bg-gray-100 py-8"
       >
-        <div className="testimonials-container max-w-7xl mx-auto px-4 ">
-          {/* Added new image section */}
-          <div className="mb-8">
-            <img 
-              src={studentsImage} 
-              alt="Our Happy Students"
-              className="w-full h-[550px] object-cover rounded-lg shadow-md"
-            />
-          </div>
+  <div className="testimonials-container mx-auto px-4 w-full">
+  {/* Added new image section */}
+  <div className="mb-8">
+    <img 
+      src={studentsImage} 
+      alt="Our Happy Students"
+      className="w-full max-h-[550px] object-cover" 
+    />
+  </div>
+</div>
+
+
+
           <h2 className="text-3xl font-bold text-center mb-6">What Our Students Say</h2>
           <div 
             className="carousel-container relative"
@@ -364,7 +383,7 @@ const HomePage = () => {
               />
             ))}
           </div>
-        </div>
+     
       </motion.div>
     );
   };

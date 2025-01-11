@@ -56,6 +56,9 @@ function Kids() {
           .container {
             max-width: 1200px;
           }
+          .text-content {
+            text-align: left;
+          }
         }
 
         @media (max-width: 1023px) {
@@ -63,11 +66,18 @@ function Kids() {
             padding-left: 1rem;
             padding-right: 1rem;
           }
+          .text-content {
+            text-align: center;
+          }
+          h1, h2, p {
+            text-align: center;
+          }
         }
 
         @media (max-width: 768px) {
           h1 {
             font-size: 2rem;
+            text-align: center;
           }
           .video-container {
             width: 100%;
@@ -76,14 +86,37 @@ function Kids() {
             width: 100%;
             height: auto;
           }
+          .text-content {
+            text-align: center;
+            padding: 0 1rem;
+          }
+          .header-content {
+            text-align: center;
+          }
+          p {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+          }
         }
 
         @media (max-width: 640px) {
           h1 {
             font-size: 1.75rem;
+            text-align: center;
+            line-height: 1.3;
           }
           .header-content {
             text-align: center;
+          }
+          p {
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.5;
+            padding: 0 0.5rem;
+          }
+          .text-content {
+            padding: 0 0.5rem;
           }
         }
       `}</style>
@@ -267,4 +300,3 @@ function Kids() {
 }
 
 export default Kids;
-

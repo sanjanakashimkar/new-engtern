@@ -10,6 +10,7 @@ import img3 from '../asset/img/slider3.jpg';
 import img4 from '../asset/img/slider4.jpg';
 import img5 from '../asset/img/slider5.jpg';
 import logoss from "../asset/img/Engtern_logo.png";
+import studentsImage from '../asset/img/post.png'; // Added new import
 
 const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -25,7 +26,7 @@ const HomePage = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowModal(true);
-    }, 1000); // Show modal after 5 seconds
+    }, 1000);
     
     return () => clearTimeout(timer);
   }, []);
@@ -305,7 +306,15 @@ const HomePage = () => {
         transition={{ duration: 0.5 }}
         className="testimonials-section bg-gray-100 py-8"
       >
-        <div className="testimonials-container max-w-7xl mx-auto px-4">
+        <div className="testimonials-container max-w-7xl mx-auto px-4 ">
+          {/* Added new image section */}
+          <div className="mb-8">
+            <img 
+              src={studentsImage} 
+              alt="Our Happy Students"
+              className="w-full h-[550px] object-cover rounded-lg shadow-md"
+            />
+          </div>
           <h2 className="text-3xl font-bold text-center mb-6">What Our Students Say</h2>
           <div 
             className="carousel-container relative"
@@ -629,6 +638,7 @@ const HomePage = () => {
             </div>
           </div>
         )}
+
 
         {/* Contact Button */}
         {!showChatBox && !showMessageBox && (

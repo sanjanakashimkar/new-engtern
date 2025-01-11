@@ -121,11 +121,12 @@ const Gallery = () => {
       animate={{ opacity: 1 }}
       className="min-h-screen bg-gray-100"
     >
+
       <motion.div 
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="bg-indigo-500 py-12 text-center"
+        className="bg-indigo-500 py-12 text-center "
       >
         <h1 className="text-4xl font-bold text-white">Gallery</h1>
       </motion.div>

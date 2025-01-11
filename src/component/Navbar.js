@@ -56,7 +56,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white sticky top-0 z-50" role="navigation">
+    <nav className="bg-white sticky top-0 z-50 shadow-md" role="navigation">
       {/* Desktop Navigation */}
       <div className="hidden lg:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[100px]">
         <div className="flex justify-between items-center h-full">
@@ -134,7 +134,7 @@ const Navbar = () => {
               <img
                 src={logo}
                 alt="ENGTERN"
-                className="h-[270px] w-[230px] mt-[-110px]" // Increased height from h-12 to h-16
+                className="h-[270px] w-[230px] mt-[-110px]"
               />
             </a>
           </div>
@@ -154,7 +154,7 @@ const Navbar = () => {
                 <img
                   src={logo}
                   alt="ENGTERN"
-                  className="h-[270px] w-[230px] mt-[-40px]" // Increased height from h-8 to h-12
+                  className="h-[270px] w-[230px] mt-[-40px]"
                 />
               </div>
               <button

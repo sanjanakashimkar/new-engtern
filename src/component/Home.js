@@ -81,7 +81,7 @@ const HomePage = () => {
         >
           <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
         </svg>
-        <h3 className="text-yellow-400 text-xl font-semibold mb-4">{level}</h3>
+        <h3 className="text-teal-400 text-xl font-semibold mb-4">{level}</h3>
         <p className="text-gray-600 mb-6 leading-relaxed">{description}</p>
         <button 
           onClick={() => {
@@ -156,19 +156,19 @@ const HomePage = () => {
       >
         <div className="carousel-container">
           <div 
-            className="carousel-wrapper"
+            className="carousel-wrapper relative flex items-center overflow-hidden w-full"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            <button className="carousel-button prev" onClick={handlePrevious}>❮</button>
+            <button className="carousel-button prev absolute left-0 text-xl p-2 bg-gray-200 rounded-full" onClick={handlePrevious}>❮</button>
             <motion.div 
-              className="images-wrapper"
+              className="images-wrapper flex transition-transform duration-300 ease-in-out"
               animate={{ x: -currentIndex * (100 / getItemsToShow()) + '%' }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
               {images.map((image, index) => (
                 <motion.div 
-                  className="image-card" 
+                  className="image-card flex-shrink-0 w-1/3 lg:w-1/2 md:w-2/3 sm:w-full"
                   key={index}
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
@@ -183,13 +183,13 @@ const HomePage = () => {
                 </motion.div>
               ))}
             </motion.div>
-            <button className="carousel-button next" onClick={handleNext}>❯</button>
+            <button className="carousel-button next absolute right-0 text-xl p-2 bg-gray-200 rounded-full" onClick={handleNext}>❯</button>
           </div>
-          <div className="carousel-dots">
+          <div className="carousel-dots flex justify-center mt-4">
             {Array.from({ length: images.length - getItemsToShow() + 1 }).map((_, idx) => (
               <button
                 key={idx}
-                className={`dot ${currentIndex === idx ? 'active' : ''}`}
+                className={`dot w-3 h-3 mx-1 rounded-full ${currentIndex === idx ? 'bg-black' : 'bg-gray-400'}`}
                 onClick={() => setCurrentIndex(idx)}
               />
             ))}
@@ -1102,6 +1102,27 @@ const HomePage = () => {
         @media (max-width: 768px) {
           .testimonial-card {
             flex: 0 0 100%;
+          }
+
+          @media (max-width: 1024px) {
+            .image-card {
+              width: 50%;
+            }
+          }
+
+          @media (max-width: 768px) {
+            .image-card {
+              width: 66.6667%;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .image-card {
+              width: 100%;
+            }
+            .carousel-button {
+              font-size: 1rem;
+            }
           }
         }
       `}</style>

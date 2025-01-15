@@ -196,13 +196,13 @@ const About = () => {
                 Co-Founder Technical Partner Of Engtern
               </p>
               <div className="flex justify-center space-x-4 mb-4">
-                <a href="#" className="bg-blue-600 p-2 rounded-full text-white hover:bg-blue-700 transition duration-300">
+                <a href="https://www.facebook.com/profile.php?id=100089928126568" className="bg-blue-600 p-2 rounded-full text-white hover:bg-blue-700 transition duration-300">
                   <Facebook size={20} />
                 </a>
-                <a href="#" className="bg-blue-600 p-2 rounded-full text-white hover:bg-blue-700 transition duration-300">
+                <a href="https://www.instagram.com/prashant_kadhao/" className="bg-blue-600 p-2 rounded-full text-white hover:bg-blue-700 transition duration-300">
                   <Instagram size={20} />
                 </a>
-                <a href="#" className="bg-blue-600 p-2 rounded-full text-white hover:bg-blue-700 transition duration-300">
+                <a href="https://www.linkedin.com/in/prashant-kadhao-544600a9/" className="bg-blue-600 p-2 rounded-full text-white hover:bg-blue-700 transition duration-300">
                   <Linkedin size={20} />
                 </a>
               </div>

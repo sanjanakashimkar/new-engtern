@@ -2,7 +2,7 @@
   "name": "engtern",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://www.engtern.com/",
+  "homepage": "https://www.engtern.com/",        
   "dependencies": {
     "cra-template": "1.2.0",
     "framer-motion": "^11.15.0",

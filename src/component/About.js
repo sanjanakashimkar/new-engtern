@@ -29,27 +29,25 @@ const About = () => {
           animation: scaleIn 0.3s ease-out forwards;
         }
 
-        /* Text alignment media queries */
+        /* Improved text arrangement in media queries */
         @media (max-width: 768px) {
+          .container {
+            padding: 0 1rem;
+          }
           .founder-content {
             flex-direction: column;
             align-items: center;
-            text-align: center;
           }
           .founder-image {
             margin-left: auto;
             margin-right: auto;
           }
-          h1, h3, p {
+          h1, h3, p, .text-lg, .text-base {
             text-align: center;
-          }
-          .text-lg, .text-base {
-            text-align: center;
-            padding: 0 1rem;
           }
           ul {
             text-align: left;
-            padding-left: 1rem;
+            padding-left: 1.5rem;
           }
           .list-disc {
             margin-left: 1rem;
@@ -57,13 +55,9 @@ const About = () => {
         }
 
         @media (max-width: 640px) {
-          .container {
-            padding: 0 1rem;
-          }
           h1 {
             font-size: 1.75rem;
             line-height: 2.25rem;
-            text-align: center;
           }
           .text-lg {
             font-size: 1rem;
@@ -71,9 +65,6 @@ const About = () => {
           }
           .founder-content p {
             padding: 0 0.5rem;
-          }
-          .list-disc {
-            margin-left: 0.5rem;
           }
         }
 
@@ -86,28 +77,28 @@ const About = () => {
           }
           ul {
             text-align: left;
+            padding-left: 1.5rem;
           }
         }
       `}</style>
 
-      {/* Rest of your component code remains exactly the same */}
       <div className="container mx-auto px-4 py-8 animate-fadeIn">
         <div className="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0 md:space-x-8">
           <div className="w-full md:w-1/2">
-            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 text-center md:text-left">
               <span className="text-yellow-500">Engtern</span>: English, Your Gateway to a Brighter Future!
             </h1>
-            <p className="text-lg text-gray-600 mb-4">
+            <p className="text-lg text-gray-600 mb-4 text-center md:text-left">
               ENGTERN, a team of amazing teachers—along with the management team, have a vision of providing quality and catering to the needs of everyone irrespective of the issues they have.
             </p>
-            <p className="text-base text-teal-500 italic">
+            <p className="text-base text-teal-500 italic text-center md:text-left">
               <b>"Prices won't make a hole in your pocket instead content will make you a whole person"</b>
             </p>
           </div>
           <div className="w-full md:w-1/2">
             <div className="relative h-[300px] sm:h-[400px] rounded-lg overflow-hidden animate-scaleIn">
               <img
-                src={aboutgirls}
+                src={aboutgirls || "/placeholder.svg"}
                 alt="Engtern - English Learning"
                 className="w-full h-full object-cover rounded-lg"
               />
@@ -123,7 +114,7 @@ const About = () => {
             <div className="w-full md:w-1/2 flex flex-col items-center founder-content">
               <div className="relative h-[350px] w-full max-w-[320px] rounded-lg overflow-hidden mb-4 founder-image animate-scaleIn">
                 <img
-                  src={diya}
+                  src={diya || "/placeholder.svg"}
                   alt="Founder Image 1"
                   className="w-full h-full object-cover rounded-lg"
                 />
@@ -151,8 +142,8 @@ const About = () => {
               </button>
               {isExpanded && (
                 <div className="mt-8 text-gray-700 animate-fadeIn max-w-3xl mx-auto px-4">
-                  <h3 className='text-xl font-semibold text-yellow-500 mb-4'>About Diya Pant</h3>
-                  <h4 className="text-lg font-semibold mb-2 text-teal-500">Multifaceted Professional Experience:</h4>
+                  <h3 className='text-xl font-semibold text-yellow-500 mb-4 text-center'>About Diya Pant</h3>
+                  <h4 className="text-lg font-semibold mb-2 text-teal-500 text-center">Multifaceted Professional Experience:</h4>
                   <ul className="list-disc list-inside mb-4">
                     <li>Content Writing Head</li>
                     <li>Public Speaking Instructor</li>
@@ -160,21 +151,21 @@ const About = () => {
                     <li>Guest Faculty at Central University, Uttarakhand</li>
                   </ul>
 
-                  <h4 className="text-lg font-semibold mb-2 text-yellow-500">Academic Excellence:</h4>
-                  <p className="mb-2">Presented research papers at:</p>
+                  <h4 className="text-lg font-semibold mb-2 text-yellow-500 text-center">Academic Excellence:</h4>
+                  <p className="mb-2 text-center">Presented research papers at:</p>
                   <ul className="list-disc list-inside mb-4">
                     <li>National Conferences: IIT, Ministry of Culture, IGNCA</li>
                     <li>International Conferences</li>
                   </ul>
 
-                  <h4 className="text-lg font-semibold mb-2 text-yellow-500">Published Author:</h4>
+                  <h4 className="text-lg font-semibold mb-2 text-yellow-500 text-center">Published Author:</h4>
                   <ul className="list-disc list-inside mb-4">
                     <li>"Say Hi to Emotions"</li>
                     <li>"Love Yourself"</li>
                   </ul>
 
-                  <h4 className="text-lg font-semibold mb-2 text-yellow-500">Founder of Engtern:</h4>
-                  <p>
+                  <h4 className="text-lg font-semibold mb-2 text-yellow-500 text-center">Founder of Engtern:</h4>
+                  <p className="text-center">
                     Dedicated to empowering individuals through English language skills and personal development, 
                     fostering growth and success.
                   </p>
@@ -185,7 +176,7 @@ const About = () => {
             <div className="w-full md:w-1/2 flex flex-col items-center founder-content">
               <div className="relative h-[350px] w-full max-w-[320px] rounded-lg overflow-hidden mb-4 founder-image animate-scaleIn">
                 <img
-                  src={prashantsir}
+                  src={prashantsir || "/placeholder.svg"}
                   alt="Founder Image 2"
                   className="w-full h-full object-cover rounded-lg"
                 />
@@ -215,3 +206,4 @@ const About = () => {
 };
 
 export default About;
+

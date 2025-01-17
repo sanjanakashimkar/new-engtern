@@ -10,23 +10,33 @@ const Footer = () => {
       <style jsx>{`
         @media (max-width: 640px) {
           .max-w-7xl {
-            padding: 1rem;
+            padding: 0.5rem;
           }
           .gap-8 {
-            gap: 1rem;
+            gap: 0.5rem;
           }
           .mb-4 {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
           }
           .space-y-2 {
-            margin-top: 0.25rem;
+            margin-top: 0.125rem;
           }
           .mt-8 {
-            margin-top: 1rem;
+            margin-top: 0.5rem;
           }
           .py-8 {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+          }
+          .logo-container {
+            margin-top: -30px;
+          }
+          .logo-image {
+            height: 160px;
+            width: 160px;
+          }
+          .logo-text {
+            margin-top: -30px;
           }
         }
 
@@ -50,15 +60,15 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 py-8 sm:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {/* Logo Section */}
-          <div className='mt-0 sm:mt-[-60px] md:mt-[-120px]'>
+          <div className='logo-container mt-0 sm:mt-[-60px] md:mt-[-120px]'>
             <div className="mb-4">
               <img
-                src={logozzzzzz}
+                src={logozzzzzz || "/placeholder.svg"}
                 alt="Company Logo"
-                className="h-[200px] w-[200px] sm:h-[240px] sm:w-[240px] md:h-[280px] md:w-[280px]"
+                className="logo-image h-[200px] w-[200px] sm:h-[240px] sm:w-[240px] md:h-[280px] md:w-[280px]"
               />
             </div>
-            <p className="text-sm mt-[-40px] sm:mt-[-50px] md:mt-[-70px]"> Our beginner-friendly lessons break down English into simple,
+            <p className="logo-text text-sm mt-[-40px] sm:mt-[-50px] md:mt-[-70px]"> Our beginner-friendly lessons break down English into simple,
               manageable steps, making it easy for you to start speaking
               confidently</p>
           </div>
@@ -86,11 +96,11 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Services</h3>
             <ul className="space-y-2">
               {[
-                { name: 'Online Courses', href: '/services/web-development' },
-                { name: ' Tutors', href: '/services/mobile-apps' },
-                { name: 'Beginner', href: '/services/cloud-solutions' },
-                { name: 'Intermediate', href: '/services/ui-ux-design' },
-                { name: 'Advanced', href: '/services/consulting' }
+                { name: 'Online Courses', href: '/' },
+                { name: ' Tutors', href: '/' },
+                { name: 'Beginner', href: '/' },
+                { name: 'Intermediate', href: '/' },
+                { name: 'Advanced', href: '/' }
               ].map((service) => (
                 <li key={service.name}>
                   <a href={service.href} className="hover:text-teal-600 text-black transition-colors">{service.name}</a>

@@ -541,7 +541,7 @@ const HomePage = () => {
       >
         <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-between bg-white rounded-lg shadow-sm p-4 sm:p-6 ml-0 sm:ml-[250px]">
           <div className="flex flex-col sm:flex-row items-center mb-4 sm:mb-0">
-            <div className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-16 mr-0 sm:mr-4">
+            <div className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-42 md:h-16 mr-0 sm:mr-4">
               <div className="absolute inset-0 bg-purple-100"></div>
               <img
                 src={englishImg}

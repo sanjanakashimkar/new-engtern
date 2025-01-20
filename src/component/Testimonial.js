@@ -110,7 +110,7 @@ const Testimonials = () => {
             position: relative;
             overflow: hidden;
             height: 400px;
-            margin-top: 20px;
+            margin-top: 4px;
           }
 
           .hero-image {

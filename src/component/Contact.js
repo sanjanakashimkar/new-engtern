@@ -178,7 +178,7 @@ function Contact() {
         .hero-section {
           position: relative;
           height: 400px;
-          margin-top: 20px;
+          margin-top: 3px;
           display: flex;
           align-items: center;
           justify-content: center;

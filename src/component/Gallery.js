@@ -1,105 +1,123 @@
 "use client"
 
-import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import training from '../asset/img/training.jpg'
-import discussion from '../asset/img/GD.jpg'
-import third from '../asset/img/third.jpg'
-import forth from '../asset/img/forth.jpg'
-import fifth from '../asset/img/5th.jpg'
-import six from '../asset/img/6th.jpg'
-import seven from '../asset/img/7th.jpg'
-import eight from '../asset/img/8th.jpg'
-import nine from '../asset/img/9th.jpg'
-import ten from '../asset/img/10th.jpg'
-import engtern from '../asset/img/engtern.jpg'
+import React, { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import training from "../asset/img/training.jpg"
+import discussion from "../asset/img/GD.jpg"
+import third from "../asset/img/third.jpg"
+import forth from "../asset/img/forth.jpg"
+import fifth from "../asset/img/5th.jpg"
+import six from "../asset/img/6th.jpg"
+import seven from "../asset/img/7th.jpg"
+import eight from "../asset/img/8th.jpg"
+import nine from "../asset/img/9th.jpg"
+import ten from "../asset/img/10th.jpg"
+import engtern from "../asset/img/engtern.jpg"
+import ss from "../asset/img/ss.png"
 
 // Import your video file
-import sampleVideo from '../asset/img/video.mp4'
+import sampleVideo from "../asset/img/video.mp4"
+
+const heroSectionStyles = `
+  .hero-section {
+    height: 400px;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-section {
+      height: 300px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-section {
+      height: 200px;
+    }
+  }
+`
 
 const Gallery = () => {
-  const [activeTab, setActiveTab] = useState('all')
+  const [activeTab, setActiveTab] = useState("all")
   const [selectedItem, setSelectedItem] = useState(null)
 
   const galleryItems = [
-    { 
-      type: 'image', 
-      src: training, 
-      alt: 'Training Session',
-      title: 'Training Session'
+    {
+      type: "image",
+      src: training,
+      alt: "Training Session",
+      title: "Training Session",
     },
-    { 
-      type: 'image', 
-      src: discussion, 
-      alt: 'Presentation',
-      title: 'Group Discussion'
+    {
+      type: "image",
+      src: discussion,
+      alt: "Presentation",
+      title: "Group Discussion",
     },
-    { 
-      type: 'image', 
-      src: third, 
-      alt: 'Group photo',
-      title: 'Hemvati Nandan Bahuguna Garhwal University Organising workshop on Personality Development & Soft Skills Training Programs'
+    {
+      type: "image",
+      src: third,
+      alt: "Group photo",
+      title:
+        "Hemvati Nandan Bahuguna Garhwal University Organising workshop on Personality Development & Soft Skills Training Programs",
     },
-    { 
-      type: 'image', 
-      src: forth, 
-      alt: 'Meeting room',
-      title: 'Hemvati Nandan Bahuguna Garhwal University Organising workshop on Personality Development & Soft Skills Training Programs'
+    {
+      type: "image",
+      src: forth,
+      alt: "Meeting room",
+      title:
+        "Hemvati Nandan Bahuguna Garhwal University Organising workshop on Personality Development & Soft Skills Training Programs",
     },
-    { 
-      type: 'image', 
-      src: fifth, 
-      alt: 'Meeting room',
-      title: 'Alumni Interaction Session on Skill up, Stand Out: Pre Graduation Strategies for a Stellar Career'
+    {
+      type: "image",
+      src: fifth,
+      alt: "Meeting room",
+      title: "Alumni Interaction Session on Skill up, Stand Out: Pre Graduation Strategies for a Stellar Career",
     },
-    { 
-      type: 'image', 
-      src: six, 
-      alt: 'Meeting room',
-      title: 'Alumni Interaction Session on Skill up, Stand Out: Pre Graduation Strategies for a Stellar Career'
+    {
+      type: "image",
+      src: six,
+      alt: "Meeting room",
+      title: "Alumni Interaction Session on Skill up, Stand Out: Pre Graduation Strategies for a Stellar Career",
     },
-    { 
-      type: 'image', 
-      src: seven, 
-      alt: 'Meeting room',
-      title: '1:1/1:2 Live Session'
+    {
+      type: "image",
+      src: seven,
+      alt: "Meeting room",
+      title: "1:1/1:2 Live Session",
     },
-    { 
-      type: 'image', 
-      src: eight, 
-      alt: 'Meeting room',
-      title: '1:1 Online Session'
+    {
+      type: "image",
+      src: eight,
+      alt: "Meeting room",
+      title: "1:1 Online Session",
     },
-    { 
-      type: 'image', 
-      src: nine, 
-      alt: 'Meeting room',
-      title: '1:1/1:2 Live Session'
+    {
+      type: "image",
+      src: nine,
+      alt: "Meeting room",
+      title: "1:1/1:2 Live Session",
     },
-    { 
-      type: 'image', 
-      src: ten, 
-      alt: 'Meeting room',
-      title: '1:1 Online Session'
+    {
+      type: "image",
+      src: ten,
+      alt: "Meeting room",
+      title: "1:1 Online Session",
     },
-    { 
-      type: 'image', 
-      src: engtern, 
-      alt: 'Meeting room',
-      title: 'Engtern'
+    {
+      type: "image",
+      src: engtern,
+      alt: "Meeting room",
+      title: "Engtern",
     },
-    { 
-      type: 'video', 
-      src: sampleVideo, 
-      thumbnail: ten, // Using an existing image as thumbnail for demonstration
-      alt: 'Sample Video',
-      
+    {
+      type: "video",
+      src: sampleVideo,
+      thumbnail: ss, // Using an existing image as thumbnail for demonstration
+      alt: "Sample Video",
     },
   ]
 
-  const filteredItems = activeTab === 'all' 
-    ? galleryItems 
-    : galleryItems.filter(item => item.type === activeTab)
+  const filteredItems = activeTab === "all" ? galleryItems : galleryItems.filter((item) => item.type === activeTab)
 
   const handleItemClick = (item) => {
     setSelectedItem(item)
@@ -110,29 +128,49 @@ const Gallery = () => {
   }
 
   const handleModalClick = (e) => {
-    if (e.target.classList.contains('modal-overlay')) {
+    if (e.target.classList.contains("modal-overlay")) {
       closeModal()
     }
   }
 
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="min-h-screen bg-gray-100"
-    >
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="min-h-screen bg-gray-100">
+      <style>{heroSectionStyles}</style>
+      <div className="relative hero-section w-full overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/galleryimg-ttIbGwueNV66dkDjPGk1BlOysZg2Ah.png')`,
+            backgroundSize: "cover",
+          }}
+        />
 
-      <motion.div 
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        className="bg-indigo-500 py-12 text-center "
-      >
-        <h1 className="text-4xl font-bold text-white">Gallery</h1>
-      </motion.div>
+        {/* Overlay with diagonal shapes */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-transparent" />
+
+        {/* Content */}
+        <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+          <motion.h1
+            initial={{ x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="text-7xl font-bold text-[#00ffff] border-b-4 border-[#00ffff]"
+            style={{
+              fontSize: "7rem",
+              "@media (max-width: 768px)": {
+                fontSize: "4rem",
+              },
+              "@media (max-width: 480px)": {
+                fontSize: "3rem",
+              },
+            }}
+          ></motion.h1>
+        </div>
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <motion.div 
+        <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.4 }}
@@ -141,11 +179,9 @@ const Gallery = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => setActiveTab('all')}
+            onClick={() => setActiveTab("all")}
             className={`px-6 py-2 rounded-md transition-colors ${
-              activeTab === 'all'
-                ? 'bg-indigo-500 text-white'
-                : 'bg-white text-gray-600 hover:bg-gray-100'
+              activeTab === "all" ? "bg-indigo-500 text-white" : "bg-white text-gray-600 hover:bg-gray-100"
             }`}
           >
             ALL
@@ -153,19 +189,25 @@ const Gallery = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => setActiveTab('video')}
+            onClick={() => setActiveTab("video")}
             className={`px-6 py-2 rounded-md transition-colors ${
-              activeTab === 'video'
-                ? 'bg-indigo-500 text-white'
-                : 'bg-white text-gray-600 hover:bg-gray-100'
+              activeTab === "video" ? "bg-indigo-500 text-white" : "bg-white text-gray-600 hover:bg-gray-100"
             }`}
           >
             VIDEOS
           </motion.button>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
+          style={{
+            "@media (max-width: 640px)": {
+              gridTemplateColumns: "repeat(1, minmax(0, 1fr))",
+            },
+            "@media (min-width: 641px) and (max-width: 768px)": {
+              gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+            },
+          }}
         >
           <AnimatePresence>
             {filteredItems.map((item, index) => (
@@ -174,23 +216,23 @@ const Gallery = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
-                transition={{ 
+                transition={{
                   duration: 0.4,
-                  delay: index * 0.1 // Stagger effect
+                  delay: index * 0.1, // Stagger effect
                 }}
                 whileHover={{ scale: 1.02 }}
                 className="relative aspect-square overflow-hidden rounded-lg shadow-lg cursor-pointer group"
                 onClick={() => handleItemClick(item)}
               >
-                {item.type === 'video' ? (
+                {item.type === "video" ? (
                   <div className="relative w-full h-full">
                     <img
-                      src={item.thumbnail}
+                      src={item.thumbnail || "/placeholder.svg"}
                       alt={item.alt}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all duration-300">
-                      <motion.div 
+                      <motion.div
                         initial={{ scale: 0 }}
                         whileHover={{ scale: 1.1 }}
                         className="w-16 h-16 rounded-full bg-white bg-opacity-80 flex items-center justify-center transform scale-0 group-hover:scale-100 transition-all duration-300"
@@ -201,17 +243,17 @@ const Gallery = () => {
                   </div>
                 ) : (
                   <img
-                    src={item.src}
+                    src={item.src || "/placeholder.svg"}
                     alt={item.alt}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 )}
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
                   className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300"
                 >
-                  <motion.h3 
+                  <motion.h3
                     initial={{ scale: 0 }}
                     whileHover={{ scale: 1 }}
                     className="text-transparent group-hover:text-white font-bold text-lg text-center px-4 py-2 bg-black bg-opacity-75 rounded-lg"
@@ -227,19 +269,24 @@ const Gallery = () => {
 
       <AnimatePresence>
         {selectedItem && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 modal-overlay"
             onClick={handleModalClick}
           >
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.5, opacity: 0 }}
               transition={{ type: "spring", damping: 25 }}
               className="relative max-w-4xl w-full mx-4"
+              style={{
+                "@media (max-width: 768px)": {
+                  maxWidth: "90%",
+                },
+              }}
             >
               <motion.button
                 whileHover={{ scale: 1.1 }}
@@ -255,37 +302,36 @@ const Gallery = () => {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </motion.button>
 
-              <motion.div 
+              <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
                 className=" rounded-lg overflow-hidden"
               >
-                {selectedItem.type === 'video' ? (
+                {selectedItem.type === "video" ? (
                   <video
                     controls
                     autoPlay
                     className="w-full h-[580px]"
+                    style={{
+                      "@media (max-width: 768px)": {
+                        height: "400px",
+                      },
+                      "@media (max-width: 480px)": {
+                        height: "300px",
+                      },
+                    }}
                   >
                     <source src={selectedItem.src} type="video/mp4" />
                   </video>
                 ) : (
-                  <img
-                    src={selectedItem.src}
-                    alt={selectedItem.alt}
-                    className="w-full h-auto"
-                  />
+                  <img src={selectedItem.src || "/placeholder.svg"} alt={selectedItem.alt} className="w-full h-auto" />
                 )}
-                <motion.div 
+                <motion.div
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.3 }}

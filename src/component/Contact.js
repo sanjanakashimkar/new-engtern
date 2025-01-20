@@ -83,7 +83,7 @@ function Contact() {
               <FaEnvelope className="icon" />
             </div>
             <h3>MAIL</h3>
-            <p>diyapart142@gmail.com</p>
+            <p>engtern2025@gmail.com</p>
           </motion.div>
 
           {/* Phone */}

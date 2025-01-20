@@ -126,7 +126,7 @@ const Footer = () => {
                   href="mailto:contact@psktech.com"
                   className="hover:text-teal-600 transition-colors text-gray-800 break-all"
                 >
-                  diyapart142@gmail.com
+                  engtern2025@gmail.com
                 </a>
               </div>
               <div className="flex items-center mt-4">
